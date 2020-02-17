@@ -1,0 +1,71 @@
+{%extends "base.html" %}
+
+{% block main %}
+
+
+    <legend class="border-bottom mb-5">
+      Contact Form
+    </legend>
+
+        
+            {% for message in form.name.errors %}
+              <div class="flash">{{ message }}</div>
+            {% endfor %}
+       
+            {% for message in form.email.errors %}
+               <div class="flash">{{ message }}</div>
+            {% endfor %}
+                 
+            {% for message in form.subject.errors %}
+               <div class="flash">{{ message }}</div>
+            {% endfor %}
+                 
+            {% for message in form.message.errors %}
+               <div class="flash">{{ message }}</div>
+            {% endfor %}
+
+
+        <form method="POST" action="{{ url_for('contact') }}">
+
+              {{ form.hidden_tag() }}
+
+                    <div class="form-group">
+                      {{ form.name.label}} <strong class="text-danger">(Required)</strong>
+                      
+                      <p> Please enter your full name. </p>     
+                        
+                      {{form.name}}     
+                    </div>
+
+                    <div class="form-group">
+                      {{ form.email.label}} <strong class="text-danger">(Required)</strong>
+                      
+                      <p> Please enter your E-mail address so we can get back to you.</p>     
+                      
+                      {{form.email}}      
+                    </div>
+
+                    <div class="form-group">
+                      {{ form.subject.label}} <strong class="text-danger">(Required)</strong> 
+                      
+                      <p> Please enter the subject of your message.</p>         
+                      
+                      {{form.subject}}      
+                    </div>
+
+                    <div class="form-group">
+                      {{ form.message.label }} <strong class="text-danger">(Required)</strong>
+                      
+                      <p> Please enter the message you would like to send.</p>        
+                      
+                      {{form.message}}      
+                    </div>
+                                      
+
+                    <div>               
+                      {{form.submit}}    
+                    </div>
+              
+        </form>
+
+{% endblock %}
